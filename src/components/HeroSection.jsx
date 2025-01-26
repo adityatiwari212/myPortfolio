@@ -47,7 +47,7 @@ const HeroSection = () => {
         <img
           src={heroImage}
           alt="Hero Illustration"
-          className="w-3/4 md:w-[65%] lg:w-[60%] max-h-[500px] rounded-lg shadow-lg"
+          className="w-3/4 md:w-[65%] lg:w-[50%] max-h-[500px] rounded-lg shadow-lg"
         />
       </div>
 
