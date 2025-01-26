@@ -1,0 +1,5 @@
+.bg-dots-pattern {
+    background-image: radial-gradient(circle, white 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+  

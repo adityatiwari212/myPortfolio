@@ -1,0 +1,23 @@
+@keyframes borderAnimation {
+    0% {
+      transform: rotate(0deg);
+      border-color: #c0c0c0;
+    }
+    100% {
+      transform: rotate(360deg);
+      border-color: #b0b0b0;
+    }
+  }
+  
+  .animate-border {
+    animation: borderAnimation 3s linear infinite;
+  }
+  
+  .silver-500 {
+    color: #c0c0c0;
+  }
+  
+  .silver-300 {
+    color: #b0b0b0;
+  }
+  
