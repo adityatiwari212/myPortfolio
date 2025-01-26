@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import "./project.css";
+import umang1 from "../assets/11.png";
+import umang2 from "../assets/12.png";
+import umang3 from "../assets/13.png";
+import umang4 from "../assets/14.png";
+import umang5 from "../assets/15.png";
+import umang6 from "../assets/16.png";
+import learnhub1 from "../assets/21.png";
+import learnhub2 from "../assets/22.png";
+import learnhub3 from "../assets/23.png";
+import learnhub4 from "../assets/24.png";
+import learnhub5 from "../assets/25.png";
+import learnhub6 from "../assets/26.png";
+
 const projects = [
   {
     title: "Umang - Mental Health Platform",
@@ -9,6 +22,7 @@ const projects = [
     stack:
       "MERN Stack (MongoDB, Express, React, Node.js), Chart.js, JWT, bcrypt.js, Raw CSS",
     github: "https://github.com/adityatiwari212/umang-mental-health",
+    images: [umang1, umang2, umang3, umang4, umang5, umang6],
   },
   {
     title: "LearnHub",
@@ -17,6 +31,7 @@ const projects = [
     stack:
       "MERN Stack (MongoDB, Express, React, Node.js), Tailwind CSS, AI, Socket.IO",
     github: "https://github.com/adityatiwari212/LearnHub",
+    images: [learnhub1, learnhub2, learnhub3, learnhub4, learnhub5, learnhub6],
   },
   {
     title: "India Team Cricket ODI Analysis",
@@ -36,11 +51,21 @@ const projects = [
 ];
 
 const ProjectSection = () => {
+  const [modalData, setModalData] = useState({ isOpen: false, images: [] });
+
+  const openModal = (images) => {
+    setModalData({ isOpen: true, images });
+  };
+
+  const closeModal = () => {
+    setModalData({ isOpen: false, images: [] });
+  };
+
   return (
     <section
       id="projects"
       className="px-6 md:px-16 py-12"
-      style={{ backgroundColor: "#030E20" }} // Custom background color
+      style={{ backgroundColor: "#030E20" }}
     >
       <h2 className="text-4xl font-bold text-center text-white">My Projects</h2>
       <p className="text-center text-gray-300 mt-2">
@@ -85,18 +110,52 @@ const ProjectSection = () => {
             <p className="mt-4 text-gray-300">
               <span className="font-semibold">Tech Stack:</span> {project.stack}
             </p>
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-block text-white font-semibold relative px-6 py-2 rounded-full border-2 border-transparent overflow-hidden group bg-black"
-            >
-              <span className="relative z-10">View on GitHub &rarr;</span>
-              <span className="absolute inset-0 w-full h-full border-2 border-silver-500 opacity-100 rounded-full animate-border" />
-            </a>
+            <div className="flex gap-4 mt-4">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-white font-semibold relative px-6 py-2 rounded-full border-2 border-transparent overflow-hidden group bg-black"
+              >
+                <span className="relative z-10">View on GitHub &rarr;</span>
+                <span className="absolute inset-0 w-full h-full border-2 border-silver-500 opacity-100 rounded-full animate-border" />
+              </a>
+              {project.images && (
+                <button
+                  onClick={() => openModal(project.images)}
+                  className="inline-block text-white font-semibold relative px-6 py-2 rounded-full border-2 border-transparent overflow-hidden group bg-black"
+                >
+                  <span className="relative z-10">Show Images</span>
+                  <span className="absolute inset-0 w-full h-full border-2 border-silver-500 opacity-100 rounded-full animate-border" />
+                </button>
+              )}
+            </div>
           </motion.div>
         ))}
       </motion.div>
+
+      {modalData.isOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg max-w-3xl w-full">
+            <button
+              onClick={closeModal}
+              className="text-black font-bold text-lg float-right"
+            >
+              &times;
+            </button>
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {modalData.images.map((image, idx) => (
+                <img
+                  key={idx}
+                  src={image}
+                  alt={`Project Image ${idx + 1}`}
+                  className="w-full h-auto rounded-lg"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
